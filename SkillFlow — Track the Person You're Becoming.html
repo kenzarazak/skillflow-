@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)file:///C:/Users/kenza/Downloads/skillflow_7.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SkillFlow — Track the Person You're Becoming</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&amp;display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --g:#22c55e;--g2:#16a34a;--g3:#dcfce7;--g4:#bbf7d0;--g5:#f0fdf4;--g6:#86efac;
+  --text:#0d1f0d;--text2:#374c37;--text3:#6b8f6b;
+  --bg:#f4fbf4;--card:#ffffff;--border:#d1ead1;
+  --shadow-sm:0 1px 4px rgba(0,0,0,0.06);
+  --shadow:0 4px 20px rgba(34,197,94,0.1);
+  --shadow-lg:0 12px 48px rgba(34,197,94,0.14);
+  --r-sm:8px;--r:14px;--r-lg:20px;--r-xl:28px;
+  --ff:'DM Sans',sans-serif;--ffd:'DM Serif Display',serif;
+  --nav-h:64px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;line-height:1.6}
+::selection{background:var(--g3);color:var(--g2)}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--g4);border-radius:3px}
+button{cursor:pointer;font-family:var(--ff);transition:all .2s}
+input,select,textarea{font-family:var(--ff);font-size:.875rem;color:var(--text);transition:all .2s}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:var(--r-sm);font-size:.875rem;font-weight:500;border:none}
+.btn-primary{background:var(--g);color:#fff}
+.btn-primary:hover{background:var(--g2);transform:translateY(-1px);box-shadow:0 4px 16px rgba(34,197,94,.3)}
+.btn-ghost{background:transparent;color:var(--text2);border:1.5px solid var(--border)}
+.btn-ghost:hover{border-color:var(--g);color:var(--g)}
+.btn-danger{background:#fee2e2;color:#dc2626;border:none}
+.btn-sm{padding:6px 14px;font-size:.8rem}
+.btn-lg{padding:14px 32px;font-size:1rem}
+.btn-icon{width:34px;height:34px;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;border:none;background:transparent;font-size:.95rem;color:var(--text3)}
+.btn-icon:hover{background:var(--g5);color:var(--g2)}
+/* FORM */
+.form-group{margin-bottom:1.1rem}
+.form-label{display:block;font-size:.78rem;font-weight:600;color:var(--text2);margin-bottom:.4rem}
+.form-control{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:var(--r-sm);background:var(--card);outline:none}
+.form-control:focus{border-color:var(--g);box-shadow:0 0 0 3px rgba(34,197,94,.12)}
+.form-control::placeholder{color:var(--text3)}
+textarea.form-control{resize:vertical;min-height:90px;line-height:1.6}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+/* CARDS */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.4rem;box-shadow:var(--shadow-sm)}
+.card-hover{transition:all .22s}
+.card-hover:hover{box-shadow:var(--shadow);transform:translateY(-2px);border-color:var(--g4)}
+.panel-title{font-weight:600;font-size:.9rem;margin-bottom:1.1rem;display:flex;justify-content:space-between;align-items:center}
+.panel-title .sub{font-size:.72rem;color:var(--text3);font-weight:400}
+/* BADGE */
+.badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:.7rem;font-weight:600}
+.badge-green{background:var(--g3);color:#166534}
+.badge-blue{background:#dbeafe;color:#1e40af}
+.badge-purple{background:#ede9fe;color:#5b21b6}
+.badge-amber{background:#fef3c7;color:#92400e}
+/* NAV */
+#main-nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);background:rgba(244,251,244,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem}
+.nav-logo{font-family:var(--ffd);font-size:1.4rem;display:flex;align-items:center;gap:8px;color:var(--text)}
+.logo-dot{width:10px;height:10px;border-radius:50%;background:var(--g);animation:logoPulse 2.5s infinite}
+@keyframes logoPulse{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.5)}70%{box-shadow:0 0 0 8px rgba(34,197,94,0)}}
+.nav-links{display:flex;align-items:center;gap:2px;flex-wrap:wrap}
+.nav-link{padding:6px 12px;border-radius:var(--r-sm);font-size:.82rem;font-weight:500;color:var(--text2);background:none;border:none}
+.nav-link:hover{background:var(--g3);color:var(--g2)}
+.nav-link.active{background:var(--g);color:#fff}
+.nav-avatar{width:34px;height:34px;border-radius:50%;background:var(--g);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;border:none;margin-left:8px;flex-shrink:0}
+/* PAGES */
+/* pages controlled via inline style */
+
+@keyframes pageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.page-inner{max-width:1100px;margin:0 auto;padding:2rem 1.5rem}
+.page-header{margin-bottom:2rem}
+.page-header h1{font-family:var(--ffd);font-size:2rem;margin-bottom:.2rem}
+.page-header p{color:var(--text2);font-size:.9rem}
+/* LANDING */
+#landing{padding-top:0;background:linear-gradient(170deg,var(--g5) 0%,var(--bg) 55%)}
+.hero{text-align:center;padding:9rem 1.5rem 5rem;max-width:820px;margin:0 auto}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--g3);color:var(--g2);padding:6px 18px;border-radius:30px;font-size:.78rem;font-weight:600;margin-bottom:2rem;border:1px solid var(--g4)}
+.hero h1{font-family:var(--ffd);font-size:clamp(2.8rem,6vw,5rem);line-height:1.08;margin-bottom:1.5rem}
+.hero h1 em{color:var(--g2);font-style:italic}
+.hero .lead{font-size:1.1rem;color:var(--text2);max-width:520px;margin:0 auto 2.5rem;line-height:1.75}
+.hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.mock-window{background:var(--card);border-radius:var(--r-xl);border:1px solid var(--border);box-shadow:var(--shadow-lg);overflow:hidden;max-width:860px;margin:0 auto}
+.mock-bar{background:var(--g5);padding:14px 20px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
+.mock-dot{width:11px;height:11px;border-radius:50%}
+.mock-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:20px}
+.mock-stat{background:var(--g5);border-radius:var(--r);padding:1rem;border:1px solid var(--g4)}
+.mock-stat .mn{font-family:var(--ffd);font-size:1.9rem;color:var(--g2)}
+.mock-stat .ml{font-size:.72rem;color:var(--text3);margin-top:2px}
+.mock-bars{padding:0 20px 20px;display:flex;flex-direction:column;gap:10px}
+.mock-bar-item{height:8px;border-radius:4px;background:var(--g)}
+.section-block{padding:5.5rem 1.5rem}
+.section-block.alt{background:#fff}
+.section-block.tinted{background:var(--g5)}
+.section-center h2{font-family:var(--ffd);font-size:clamp(2rem,4vw,3rem);text-align:center;margin-bottom:.75rem}
+.section-sub{text-align:center;color:var(--text2);font-size:1rem;margin-bottom:3.5rem}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:1.25rem;max-width:1000px;margin:0 auto}
+.feat{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.75rem;transition:all .22s}
+.feat:hover{box-shadow:var(--shadow);border-color:var(--g4);transform:translateY(-2px)}
+.feat-icon{width:46px;height:46px;background:var(--g3);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1.1rem}
+.feat h3{font-size:1rem;font-weight:600;margin-bottom:.5rem}
+.feat p{color:var(--text2);font-size:.875rem;line-height:1.65}
+
+.cta-band{background:linear-gradient(135deg,#0f4e24,#166534,#22c55e);padding:5rem 1.5rem;text-align:center;color:#fff}
+.cta-band h2{font-family:var(--ffd);font-size:clamp(2rem,4vw,3rem);margin-bottom:.75rem}
+.cta-band p{opacity:.85;margin-bottom:2rem}
+.btn-white{background:#fff;color:var(--g2)}
+.btn-white:hover{background:var(--g5)}
+/* AUTH */
+#auth-page{min-height:100vh;display:none;align-items:center;justify-content:center;padding:2rem;background:var(--g5)}
+.auth-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-xl);padding:2.5rem;width:100%;max-width:420px;box-shadow:var(--shadow-lg)}
+.auth-logo{text-align:center;margin-bottom:1.75rem;font-family:var(--ffd);font-size:1.6rem;display:flex;align-items:center;justify-content:center;gap:8px}
+.auth-title{font-family:var(--ffd);font-size:1.9rem;text-align:center;margin-bottom:.3rem}
+.auth-sub{text-align:center;color:var(--text2);font-size:.875rem;margin-bottom:1.75rem}
+.auth-tabs{display:flex;background:var(--g5);border-radius:var(--r-sm);padding:4px;margin-bottom:1.75rem;gap:3px}
+.auth-tab{flex:1;padding:8px;border:none;background:none;border-radius:6px;font-size:.85rem;font-weight:500;color:var(--text2)}
+.auth-tab.active{background:var(--card);color:var(--g2);box-shadow:var(--shadow-sm)}
+/* DASHBOARD */
+.stats-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:1rem;margin-bottom:1.75rem}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem;transition:all .22s}
+.stat-card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.stat-icon{width:38px;height:38px;border-radius:var(--r-sm);background:var(--g3);display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:.75rem}
+.stat-num{font-family:var(--ffd);font-size:1.8rem;line-height:1}
+.stat-label{font-size:.74rem;color:var(--text3);margin-top:4px}
+.stat-change{font-size:.72rem;color:var(--g2);margin-top:6px;font-weight:500}
+.dash-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:1.5rem}
+.ai-card{background:linear-gradient(135deg,#0f4e24,#22c55e);border-radius:var(--r);padding:1.4rem;color:#fff;margin-bottom:1rem;position:relative;overflow:hidden}
+.ai-card::after{content:'✦';position:absolute;right:1rem;top:.5rem;font-size:5rem;opacity:.08;line-height:1;pointer-events:none}
+.ai-tag{font-size:.68rem;font-weight:700;letter-spacing:.08em;opacity:.75;text-transform:uppercase;margin-bottom:.4rem}
+.ai-text{font-size:.875rem;line-height:1.65;opacity:.95}
+.streak-row{display:flex;gap:3px;flex-wrap:wrap}
+.s-cell{width:21px;height:21px;border-radius:3px;background:var(--g3)}
+.s-cell.on{background:var(--g)}
+.s-cell.today{background:var(--g);box-shadow:0 0 0 3px var(--g4)}
+.act-item{display:flex;gap:12px;align-items:flex-start;padding:.65rem 0;border-bottom:1px solid var(--border)}
+.act-item:last-child{border-bottom:none}
+.act-dot{width:8px;height:8px;border-radius:50%;background:var(--g);margin-top:5px;flex-shrink:0}
+.act-text{font-size:.83rem;color:var(--text2)}
+.act-time{font-size:.72rem;color:var(--text3);margin-top:2px}
+.wk-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.wk-cell{background:var(--g5);border-radius:var(--r-sm);padding:.9rem;text-align:center}
+.wk-num{font-family:var(--ffd);font-size:1.6rem;color:var(--g2)}
+.wk-lbl{font-size:.72rem;color:var(--text3);margin-top:2px}
+/* SKILLS */
+.skills-toolbar{display:flex;gap:10px;margin-bottom:1.5rem;flex-wrap:wrap;align-items:center}
+.search-wrap{position:relative;flex:1;min-width:200px}
+.search-wrap::before{content:'🔍';position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:.8rem;pointer-events:none}
+.search-box{width:100%;padding:9px 14px 9px 36px;border:1.5px solid var(--border);border-radius:var(--r-sm);background:var(--card);outline:none;font-size:.875rem}
+.search-box:focus{border-color:var(--g)}
+.filter-pills{display:flex;gap:6px;flex-wrap:wrap}
+.pill{padding:6px 14px;border-radius:20px;border:1.5px solid var(--border);background:none;font-size:.78rem;font-weight:500;color:var(--text2)}
+.pill.active{background:var(--g);color:#fff;border-color:var(--g)}
+.pill:hover:not(.active){background:var(--g5);border-color:var(--g4)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(282px,1fr));gap:1.2rem}
+.skill-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--r);padding:1.35rem;transition:all .22s;position:relative}
+.skill-card:hover{box-shadow:var(--shadow);transform:translateY(-3px);border-color:var(--g4)}
+.skill-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.9rem}
+.skill-acts{display:flex;gap:2px;opacity:0;transition:opacity .2s}
+.skill-card:hover .skill-acts{opacity:1}
+.skill-name{font-size:1.1rem;font-weight:700;margin-bottom:2px}
+.skill-meta{font-size:.77rem;color:var(--text3)}
+.level-row{display:flex;justify-content:space-between;font-size:.72rem;color:var(--text3);margin:.85rem 0 5px}
+.prog-track{height:9px;background:var(--g3);border-radius:5px;overflow:hidden;position:relative}
+.prog-fill{height:100%;border-radius:5px;background:linear-gradient(90deg,var(--g6),var(--g));transition:width .8s cubic-bezier(.34,1.56,.64,1)}
+.prog-target-line{position:absolute;top:-2px;bottom:-2px;width:3px;border-radius:2px;background:var(--g2)}
+.skill-foot{display:flex;justify-content:space-between;align-items:center;margin-top:.85rem;font-size:.74rem;color:var(--text3)}
+.skill-pct{color:var(--g2);font-weight:700}
+.fab{position:fixed;bottom:2rem;right:2rem;width:54px;height:54px;border-radius:50%;background:var(--g);color:#fff;border:none;font-size:1.6rem;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(34,197,94,.4);z-index:100}
+.fab:hover{background:var(--g2);transform:scale(1.1)}
+.empty-state{grid-column:1/-1;text-align:center;padding:4rem 2rem;color:var(--text3)}
+.empty-icon{font-size:3.5rem;margin-bottom:1rem}
+.empty-state h3{font-size:1rem;font-weight:600;color:var(--text2);margin-bottom:.4rem}
+/* TIMER */
+.timer-wrap{max-width:540px;margin:0 auto;text-align:center}
+.timer-ring{width:240px;height:240px;margin:0 auto 2rem;position:relative}
+.timer-svg{width:100%;height:100%;transform:rotate(-90deg)}
+.timer-svg circle{fill:none;stroke-width:8;stroke-linecap:round}
+.t-bg{stroke:var(--g3)}
+.t-arc{stroke:var(--g);stroke-dasharray:326.73;stroke-dashoffset:326.73;transition:stroke-dashoffset 1s linear}
+.timer-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--ffd);font-size:3rem}
+.timer-btns{display:flex;gap:14px;justify-content:center;margin-bottom:2rem}
+.t-btn{width:62px;height:62px;border-radius:50%;border:none;display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+.t-play{background:var(--g);color:#fff;box-shadow:0 4px 20px rgba(34,197,94,.35)}
+.t-play:hover{background:var(--g2)}
+.t-reset{background:var(--border);color:var(--text2)}
+.t-reset:hover{background:var(--g3);color:var(--g2)}
+.sess-row{display:flex;justify-content:space-between;align-items:center;padding:.7rem 0;border-bottom:1px solid var(--border)}
+.sess-row:last-child{border-bottom:none}
+.sess-skill{font-size:.875rem;font-weight:600}
+.sess-meta{font-size:.73rem;color:var(--text3);margin-top:2px}
+.sess-dur{font-size:.875rem;font-weight:700;color:var(--g2)}
+/* ANALYTICS */
+.chart-tabs{display:flex;gap:6px;margin-bottom:1rem}
+.ct{padding:5px 14px;border-radius:20px;border:1px solid var(--border);background:none;font-size:.78rem;color:var(--text2);font-weight:500}
+.ct.active{background:var(--g);color:#fff;border-color:var(--g)}
+.prog-item{margin-bottom:1rem}
+.prog-head{display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:5px}
+.prog-head .pn{font-weight:700}
+.prog-head .pm{color:var(--text3)}
+/* EVIDENCE */
+.ev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(218px,1fr));gap:1.1rem}
+.ev-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--r);overflow:hidden;transition:all .22s}
+.ev-card:hover{box-shadow:var(--shadow);transform:translateY(-2px);border-color:var(--g4)}
+.ev-thumb{height:110px;display:flex;align-items:center;justify-content:center;font-size:2.8rem;background:var(--g5)}
+.ev-body{padding:.9rem}
+.ev-name{font-size:.875rem;font-weight:700;margin-bottom:4px}
+.ev-skill{font-size:.73rem;color:var(--text3)}
+.ev-date{font-size:.7rem;color:var(--text3);margin-top:6px}
+.drop-zone{border:2px dashed var(--g4);border-radius:var(--r);padding:2rem;text-align:center;cursor:pointer;margin-bottom:1.25rem;transition:all .2s}
+.drop-zone:hover,.drop-zone.drag{background:var(--g5);border-color:var(--g)}
+.dz-icon{font-size:2rem;margin-bottom:.5rem}
+.dz-text{color:var(--text2);font-size:.875rem}
+.dz-sub{font-size:.77rem;color:var(--text3);margin-top:4px}
+/* TIMELINE */
+.tl-wrap{max-width:680px;margin:0 auto}
+.tl-list{position:relative;padding-left:2rem}
+.tl-list::before{content:'';position:absolute;left:7px;top:0;bottom:0;width:2px;background:var(--g4)}
+.tl-item{position:relative;margin-bottom:1.35rem}
+.tl-dot{position:absolute;left:-2.05rem;top:1rem;width:14px;height:14px;border-radius:50%;border:3px solid var(--bg);box-shadow:0 0 0 2px var(--g4)}
+.tl-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem 1.3rem;transition:all .2s}
+.tl-card:hover{box-shadow:var(--shadow);border-color:var(--g4)}
+.tl-date{font-size:.71rem;color:var(--text3);margin-bottom:.3rem}
+.tl-title{font-size:.9rem;font-weight:700;margin-bottom:.2rem}
+.tl-desc{font-size:.82rem;color:var(--text2);line-height:1.5}
+/* REFLECT */
+.reflect-wrap{max-width:700px;margin:0 auto}
+.mood-row{display:flex;gap:10px;flex-wrap:wrap}
+.mood-btn{flex:1;min-width:80px;padding:12px 8px;border:1.5px solid var(--border);border-radius:var(--r);background:none;display:flex;flex-direction:column;align-items:center;gap:5px;font-size:.8rem;color:var(--text2);font-weight:500}
+.mood-btn .em{font-size:1.4rem}
+.mood-btn:hover{background:var(--g5);border-color:var(--g4)}
+.mood-btn.active{background:var(--g3);border-color:var(--g);color:var(--g2)}
+.conf-slider{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:3px;background:var(--g3);outline:none}
+.conf-slider::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--g);cursor:pointer;border:3px solid #fff;box-shadow:0 2px 6px rgba(34,197,94,.4)}
+.conf-labels{display:flex;justify-content:space-between;font-size:.72rem;color:var(--text3);margin-top:4px}
+.past-entry{padding:.9rem 0;border-bottom:1px solid var(--border)}
+.past-entry:last-child{border-bottom:none}
+.past-date{font-size:.74rem;color:var(--text3);margin-bottom:.3rem}
+.past-text{font-size:.84rem;color:var(--text2);line-height:1.55}
+/* AI COACH */
+.coach-hero{background:linear-gradient(135deg,#0d4a27,#166534,#22c55e);border-radius:var(--r-lg);padding:2rem;color:#fff;margin-bottom:1.5rem;position:relative;overflow:hidden}
+.coach-hero::after{content:'✦';position:absolute;right:2rem;top:1rem;font-size:6rem;opacity:.08;line-height:1}
+.coach-tag{font-size:.7rem;font-weight:700;letter-spacing:.08em;opacity:.7;text-transform:uppercase;margin-bottom:.4rem}
+.coach-hero h2{font-family:var(--ffd);font-size:1.75rem;margin-bottom:.4rem}
+.coach-hero p{opacity:.82;font-size:.875rem;line-height:1.65}
+.quick-chips{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:.75rem}
+.chip{padding:6px 14px;background:var(--g5);border:1px solid var(--g4);border-radius:20px;font-size:.77rem;color:var(--g2);font-weight:500}
+.chip:hover{background:var(--g3)}
+.chat-win{max-height:380px;overflow-y:auto;display:flex;flex-direction:column;gap:.9rem;margin-bottom:1rem;padding-right:4px}
+.chat-msg{display:flex;gap:10px;align-items:flex-start;animation:msgIn .25s ease}
+@keyframes msgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.chat-msg.usr{flex-direction:row-reverse}
+.msg-av{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0}
+.msg-av.ai{background:var(--g);color:#fff}
+.msg-av.usr{background:var(--g3);color:var(--g2)}
+.msg-bub{max-width:78%;padding:10px 14px;font-size:.855rem;line-height:1.6;border-radius:14px}
+.msg-bub.ai{background:var(--g5);border:1px solid var(--g4);border-radius:4px 14px 14px 14px}
+.msg-bub.usr{background:var(--g);color:#fff;border-radius:14px 4px 14px 14px}
+.chat-input-row{display:flex;gap:8px}
+.chat-inp{flex:1;padding:11px 15px;border:1.5px solid var(--border);border-radius:var(--r);font-size:.875rem;outline:none;background:var(--card)}
+.chat-inp:focus{border-color:var(--g)}
+@keyframes blink{0%,80%,100%{opacity:0}40%{opacity:1}}
+.typing span{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--g4);margin:0 2px;animation:blink 1.4s infinite}
+.typing span:nth-child(2){animation-delay:.2s}
+.typing span:nth-child(3){animation-delay:.4s}
+/* HEATMAP */
+.hm-grid{display:grid;grid-template-columns:repeat(53,1fr);gap:3px}
+.hm-cell{aspect-ratio:1;border-radius:3px;background:var(--g3);cursor:pointer;transition:transform .15s}
+.hm-cell:hover{transform:scale(1.3)}
+.hm-cell.l1{background:#bbf7d0}
+.hm-cell.l2{background:#4ade80}
+.hm-cell.l3{background:#22c55e}
+.hm-cell.l4{background:#15803d}
+/* BADGES */
+.badges-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:1rem}
+.badge-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;text-align:center;transition:all .22s}
+.badge-card:hover:not(.locked){box-shadow:var(--shadow);transform:translateY(-2px)}
+.badge-card.locked{opacity:.38;filter:grayscale(.6)}
+.badge-em{font-size:2.5rem;margin-bottom:.75rem}
+.badge-name{font-size:.875rem;font-weight:700;margin-bottom:.3rem}
+.badge-desc{font-size:.72rem;color:var(--text3);line-height:1.4}
+.badge-earned{font-size:.7rem;color:var(--g2);font-weight:600;margin-top:8px}
+/* PROFILE */
+.profile-hero{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:2rem;display:flex;align-items:center;gap:1.5rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.profile-av{width:78px;height:78px;border-radius:50%;background:var(--g);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--ffd);font-size:2rem;flex-shrink:0}
+/* MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:500;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .25s;backdrop-filter:blur(4px)}
+.modal-bg.open{opacity:1;pointer-events:all}
+.modal{background:var(--card);border-radius:var(--r-xl);padding:2rem;width:100%;max-width:500px;transform:translateY(16px);transition:transform .25s;max-height:90vh;overflow-y:auto}
+.modal-bg.open .modal{transform:translateY(0)}
+.modal-title{font-family:var(--ffd);font-size:1.6rem;margin-bottom:1.35rem}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:1.35rem}
+/* TOAST */
+#toast-root{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);z-index:999;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none}
+.toast{background:#0d1f0d;color:#fff;padding:10px 22px;border-radius:30px;font-size:.84rem;font-weight:500;animation:toastIn .3s ease;white-space:nowrap}
+@keyframes toastIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+/* CONFETTI */
+.cfpce{position:fixed;pointer-events:none;z-index:9999;border-radius:2px;animation:cfFall 2.2s ease-in forwards}
+@keyframes cfFall{0%{opacity:1;transform:translateY(-20px) rotate(0)}100%{opacity:0;transform:translateY(110vh) rotate(720deg)}}
+/* SECTION LABEL */
+.section-label{font-size:.72rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.75rem}
+/* UTILS */
+.flex{display:flex}.items-center{align-items:center}.justify-between{justify-content:space-between}
+.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}
+.mt-1{margin-top:.5rem}.mt-2{margin-top:1rem}.mt-3{margin-top:1.5rem}.mb-1{margin-bottom:.5rem}.mb-2{margin-bottom:1rem}.mb-3{margin-bottom:1.5rem}
+.w-full{width:100%}.text-center{text-align:center}
+.text-muted{color:var(--text2)}.text-hint{color:var(--text3)}
+.text-xs{font-size:.75rem}.text-sm{font-size:.875rem}
+.font-bold{font-weight:700}
+.hidden{display:none!important}
+.divider{height:1px;background:var(--border);margin:1rem 0}
+@media(max-width:768px){
+  .dash-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .stats-strip{grid-template-columns:repeat(2,1fr)}
+  .mock-stats{grid-template-columns:repeat(2,1fr)}
+  .nav-links .nav-label{display:none}
+  .hm-grid{grid-template-columns:repeat(26,1fr)}
+}
+</style>
+</head>
+<body>
+<div id="toast-root"></div>
+
+<!-- NAV -->
+<nav id="main-nav" style="display:none">
+  <div class="nav-logo"><span class="logo-dot"></span>SkillFlow</div>
+  <div class="nav-links" id="nav-links">
+    <button class="nav-link active" onclick="nav(&#39;dashboard&#39;)" id="nl-dashboard">🏠 <span class="nav-label">Dashboard</span></button>
+    <button class="nav-link" onclick="nav(&#39;skills&#39;)" id="nl-skills">📚 <span class="nav-label">Skills</span></button>
+    <button class="nav-link" onclick="nav(&#39;timer&#39;)" id="nl-timer">⏱ <span class="nav-label">Timer</span></button>
+    <button class="nav-link" onclick="nav(&#39;analytics&#39;)" id="nl-analytics">📊 <span class="nav-label">Analytics</span></button>
+    <button class="nav-link" onclick="nav(&#39;evidence&#39;)" id="nl-evidence">📂 <span class="nav-label">Evidence</span></button>
+    <button class="nav-link" onclick="nav(&#39;timeline&#39;)" id="nl-timeline">🗓 <span class="nav-label">Timeline</span></button>
+    <button class="nav-link" onclick="nav(&#39;reflect&#39;)" id="nl-reflect">✍️ <span class="nav-label">Reflect</span></button>
+    <button class="nav-link" onclick="nav(&#39;ai&#39;)" id="nl-ai">✦ <span class="nav-label">AI Coach</span></button>
+    <button class="nav-link" onclick="nav(&#39;badges&#39;)" id="nl-badges">🏆 <span class="nav-label">Badges</span></button>
+  </div>
+  <button class="nav-avatar" id="nav-avatar" onclick="nav(&#39;profile&#39;)">U</button>
+</nav>
+
+<!-- LANDING -->
+<div id="landing" style="display:block;padding-top:0;background:linear-gradient(170deg,var(--g5) 0%,var(--bg) 55%)">
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:200;height:64px;background:rgba(244,251,244,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem">
+    <div style="font-family:var(--ffd);font-size:1.4rem;display:flex;align-items:center;gap:8px"><span class="logo-dot"></span>SkillFlow</div>
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-ghost" onclick="showAuth(&#39;login&#39;)">Sign In</button>
+      <button class="btn btn-primary" onclick="showAuth(&#39;signup&#39;)">Get Started →</button>
+    </div>
+  </nav>
+  <div class="hero">
+    <div class="hero-eyebrow">✦ Personal Growth Platform for Learners</div>
+    <h1>Track the person<br><em>you're becoming.</em></h1>
+    <p class="lead">Your skills, your effort, your proof of growth — all in one beautiful, motivating space. Built for students who are serious about growing every single day.</p>
+    <div class="hero-cta">
+      <button class="btn btn-primary btn-lg" onclick="showAuth(&#39;signup&#39;)">Start for Free →</button>
+      <button class="btn btn-ghost btn-lg" onclick="document.getElementById(&#39;feats&#39;).scrollIntoView({behavior:&#39;smooth&#39;})">See how it works</button>
+    </div>
+  </div>
+  <div style="padding:0 1.5rem 4rem;max-width:900px;margin:0 auto">
+    <div class="mock-window">
+      <div class="mock-bar">
+        <span class="mock-dot" style="background:#ff5f56"></span>
+        <span class="mock-dot" style="background:#febc2e"></span>
+        <span class="mock-dot" style="background:#27c840"></span>
+        <span style="font-size:.78rem;color:var(--text3);margin-left:10px">skillflow.app — Dashboard</span>
+      </div>
+      <div class="mock-stats">
+        <div class="mock-stat"><div class="mn">12</div><div class="ml">Skills tracked</div></div>
+        <div class="mock-stat"><div class="mn">84h</div><div class="ml">Practice hours</div></div>
+        <div class="mock-stat"><div class="mn">🔥21</div><div class="ml">Day streak</div></div>
+        <div class="mock-stat"><div class="mn">Lv 7</div><div class="ml">Python</div></div>
+      </div>
+      <div class="mock-bars">
+        <div style="font-size:.8rem;font-weight:600;margin-bottom:8px">Skill Progress</div>
+        <div><div style="display:flex;justify-content:space-between;font-size:.72rem;color:var(--text3);margin-bottom:4px"><span>Python</span><span>70%</span></div><div style="height:8px;background:var(--g3);border-radius:4px"><div style="height:100%;width:70%;background:var(--g);border-radius:4px"></div></div></div>
+        <div><div style="display:flex;justify-content:space-between;font-size:.72rem;color:var(--text3);margin-bottom:4px"><span>UI Design</span><span>50%</span></div><div style="height:8px;background:var(--g3);border-radius:4px"><div style="height:100%;width:50%;background:#60a5fa;border-radius:4px"></div></div></div>
+        <div><div style="display:flex;justify-content:space-between;font-size:.72rem;color:var(--text3);margin-bottom:4px"><span>React</span><span>60%</span></div><div style="height:8px;background:var(--g3);border-radius:4px"><div style="height:100%;width:60%;background:#f59e0b;border-radius:4px"></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div id="feats" class="section-block alt">
+    <div class="section-center"><h2>Everything you need to grow</h2></div>
+    <p class="section-sub">One platform. Every tool your learning journey needs.</p>
+    <div class="features-grid">
+      <div class="feat"><div class="feat-icon">📚</div><h3>Skill Tracking</h3><p>Track unlimited skills with levels, categories, notes, and visual progress bars showing real growth over time.</p></div>
+      <div class="feat"><div class="feat-icon">⏱</div><h3>Practice Timer</h3><p>Built-in timer connects every minute of effort to a skill. See exactly where your time goes and stay accountable.</p></div>
+      <div class="feat"><div class="feat-icon">📊</div><h3>Beautiful Analytics</h3><p>Charts, radar graphs, heatmaps and streak visualizations that make your progress visible and deeply satisfying.</p></div>
+      <div class="feat"><div class="feat-icon">📂</div><h3>Evidence Vault</h3><p>Upload certificates, GitHub links, projects, and notes. Every piece of proof connects to a skill you're growing.</p></div>
+      <div class="feat"><div class="feat-icon">🗓</div><h3>Growth Timeline</h3><p>A beautiful, emotional record of your journey — every session, milestone, and breakthrough, documented forever.</p></div>
+      <div class="feat"><div class="feat-icon">✍️</div><h3>Reflections</h3><p>Weekly reflection prompts with mood and confidence tracking to build self-awareness and intentional growth.</p></div>
+      <div class="feat"><div class="feat-icon">✦</div><h3>AI Coach</h3><p>Powered by Claude AI — personalized, encouraging insights about your patterns, progress, and next steps.</p></div>
+      <div class="feat"><div class="feat-icon">🏆</div><h3>Gamification</h3><p>Streaks, badges, and level-up moments that celebrate effort, not just outcomes. Stay motivated every single day.</p></div>
+      <div class="feat"><div class="feat-icon">🔥</div><h3>Consistency Heatmap</h3><p>GitHub-style contribution graph showing a full year of practice. See your consistency patterns at a glance.</p></div>
+    </div>
+  </div>
+
+  <div class="cta-band">
+    <h2>Start tracking today.</h2>
+    <p>Free. No credit card. Just growth.</p>
+    <button class="btn btn-white btn-lg" onclick="showAuth(&#39;signup&#39;)">Begin your journey →</button>
+  </div>
+  <div style="text-align:center;padding:2rem;font-size:.78rem;color:var(--text3);background:#fff">SkillFlow © 2025 · Built for learners who mean it.</div>
+</div>
+
+<!-- AUTH -->
+<div id="auth-page" style="display:none">
+  <div class="auth-card">
+    <div class="auth-logo"><span class="logo-dot"></span>SkillFlow</div>
+    <h2 class="auth-title" id="auth-title">Welcome back</h2>
+    <p class="auth-sub" id="auth-sub">Sign in to continue your journey.</p>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tab-login" onclick="switchAuthTab(&#39;login&#39;)">Sign In</button>
+      <button class="auth-tab" id="tab-signup" onclick="switchAuthTab(&#39;signup&#39;)">Sign Up</button>
+    </div>
+    <div id="form-login">
+      <div class="form-group"><label class="form-label">Email</label><input class="form-control" type="email" id="l-email" placeholder="you@example.com"></div>
+      <div class="form-group"><label class="form-label">Password</label><input class="form-control" type="password" id="l-pass" placeholder="••••••••" onkeydown="if(event.key===&#39;Enter&#39;)doLogin()"></div>
+      <button class="btn btn-primary w-full btn-lg" style="width:100%" onclick="doLogin()">Sign In →</button>
+      <p style="text-align:center;margin-top:1rem;font-size:.77rem;color:var(--text3)">Demo: any input works to enter the app.</p>
+    </div>
+    <div id="form-signup" style="display:none">
+      <div class="form-group"><label class="form-label">Your Name</label><input class="form-control" id="s-name" placeholder="Your full name"></div>
+      <div class="form-group"><label class="form-label">Email</label><input class="form-control" type="email" id="s-email" placeholder="you@example.com"></div>
+      <div class="form-group"><label class="form-label">Password</label><input class="form-control" type="password" id="s-pass" placeholder="Create a password" onkeydown="if(event.key===&#39;Enter&#39;)doSignup()"></div>
+      <button class="btn btn-primary w-full btn-lg" style="width:100%" onclick="doSignup()">Create Account →</button>
+    </div>
+    <div style="text-align:center;margin-top:1.25rem"><button class="btn btn-ghost btn-sm" onclick="showLanding()">← Back to home</button></div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" style="display:none;min-height:100vh;padding-top:var(--nav-h)">
+  <div class="page-inner">
+    <div class="page-header"><h1 id="dash-greet">Good morning ✦</h1><p id="dash-sub" class="text-muted">Loading your growth data…</p></div>
+    <div class="stats-strip" id="stats-strip"></div>
+    <div class="dash-grid">
+      <div>
+        <div class="card mb-2"><div class="panel-title">Skill Progress <span class="sub">Top skills by hours</span></div><div id="dash-bars"></div></div>
+        <div class="card"><div class="panel-title">Recent Activity</div><div id="dash-activity"></div></div>
+      </div>
+      <div>
+        <div class="ai-card"><div class="ai-tag">✦ AI Insight</div><div class="ai-text" id="dash-insight">Generating…</div></div>
+        <div class="card mb-2"><div class="panel-title">Learning Streak <span class="sub" id="streak-label">🔥 7 days</span></div><div class="streak-row" id="streak-row"></div></div>
+        <div class="card"><div class="panel-title">This Week</div><div class="wk-grid" id="wk-grid"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div id="skills" style="display:none;min-height:100vh;padding-top:var(--nav-h)">
+  <div class="page-inner">
+    <div class="page-header flex justify-between items-center" style="flex-wrap:wrap;gap:1rem">
+      <div><h1>My Skills</h1><p class="text-muted">Track every skill you're growing.</p></div>
+      <button class="btn btn-primary" onclick="openSkillModal()">+ Add Skill</button>
+    </div>
+    <div class="skills-toolbar">
+      <div class="search-wrap"><input class="search-box" id="skill-search" placeholder="Search skills…" oninput="renderSkills()"></div>
+      <div class="filter-pills" id="cat-pills"></div>
+    </div>
+    <div class="skills-grid" id="skills-grid"></div>
+  </div>
+  <button class="fab" onclick="openSkillModal()">+</button>
+</div>
+
+<!-- TIMER -->
+<div id="timer" style="display:none;min-height:100vh;padding-top:var(--nav-h)">
+  <div class="page-inner">
+    <div class="page-header text-center"><h1>Practice Timer</h1><p class="text-muted">Every minute you log is proof you showed up.</p></div>
+    <div class="timer-wrap">
+      <div class="form-group" style="margin-bottom:1.5rem"><label class="form-label">Practicing:</label><select class="form-control" id="timer-sel"></select></div>
+      <div class="timer-ring">
+        <svg class="timer-svg" viewBox="0 0 120 120"><circle class="t-bg" cx="60" cy="60" r="52"></circle><circle class="t-arc" id="t-arc" cx="60" cy="60" r="52" style="stroke-dashoffset: 326.73;"></circle></svg>
+        <div class="timer-num" id="t-display">00:00</div>
+      </div>
+      <div class="timer-btns">
+        <button class="t-btn t-reset" onclick="timerReset()" title="Reset">↺</button>
+        <button class="t-btn t-play" id="t-play" onclick="timerToggle()">▶</button>
+      </div>
+      <div class="card mb-2">
+        <div class="panel-title">Log manually</div>
+        <div class="flex gap-3" style="flex-wrap:wrap">
+          <select class="form-control" id="manual-sel" style="flex:1;min-width:150px"></select>
+          <input class="form-control" type="number" id="manual-mins" placeholder="Minutes" style="width:110px" min="1">
+          <button class="btn btn-primary" onclick="manualLog()">Log</button>
+        </div>
+      </div>
+      <div class="card"><div class="panel-title">Recent Sessions</div><div id="sessions-list"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ANALYTICS -->
+<div id="analytics" style="display:none;min-height:100vh;padding-top:var(--nav-h)">
+  <div class="page-inner">
+    <div class="page-header"><h1>Progress Analytics</h1><p class="text-muted">Visualize every dimension of your growth.</p></div>
+    <div class="stats-strip" id="an-stats"></div>
+    <div class="card mb-2">
+      <div class="panel-title">Practice over time <span class="sub">Last 8 weeks</span></div>
+      <div class="chart-tabs">
+        <button class="ct active" onclick="switchChart(&#39;weekly&#39;,this)">Weekly Hours</button>
+        <button class="ct" onclick="switchChart(&#39;skill&#39;,this)">By Skill</button>
+        <button class="ct" onclick="switchChart(&#39;radar&#39;,this)">Radar</button>
+      </div>
+      <div id="ch-weekly"><div style="position:relative;height:230px"><canvas id="c-weekly"></canvas></div></div>
+      <div id="ch-skill" style="display:none"><div style="position:relative;height:230px"><canvas id="c-skill"></canvas></div></div>
+      <div id="ch-radar" style="display:none"><div style="position:relative;height:290px"><canvas id="c-radar"></canvas></div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:1.5rem">
+      <div class="card"><div class="panel-title">Level progression <span class="sub">Current vs target</span></div><div id="an-prog"></div></div>
+      <div class="card">
+        <div class="panel-title">Hours by category</div>
+        <div style="position:relative;height:200px"><canvas id="c-donut"></canvas></div>
+        <div id="donut-legend" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;font-size:12px;color:var(--text3)"></div>
+      </div>
+    </div>
+    <!-- HEATMAP -->
+    <div class="card mt-2">
+      <div class="panel-title">Consistency Heatmap <span class="sub">Last 52 weeks</span></div>
+      <div style="display:flex;gap:3px;margin-bottom:5px;font-size:.7rem;color:var(--text3)">
+        <span style="flex:1">Jan</span><span style="flex:1">Feb</span><span style="flex:1">Mar</span><span style="flex:1">Apr</span><span style="flex:1">May</span><span style="flex:1">Jun</span><span style="flex:1">Jul</span><span style="flex:1">Aug</span><span style="flex:1">Sep</span><span style="flex:1">Oct</span><span style="flex:1">Nov</span><span style="flex:1">Dec</span>
+      </div>
+      <div class="hm-grid" id="hm-grid"></div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:10px;font-size:.72rem;color:var(--text3)">
+        Less <span style="width:12px;height:12px;border-radius:2px;background:var(--g3);display:inline-block"></span><span style="width:12px;height:12px;border-radius:2px;background:#bbf7d0;display:inline-block"></span><span style="width:12px;height:12px;border-radius:2px;background:#4ade80;display:inline-block"></span><span style="width:12px;height:12px;border-radius:2px;background:#22c55e;display:inline-block"></span><span style="width:12px;height:12px;border-radius:2px;background:#15803d;display:inline-block"></span> More
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EVIDENCE -->
+<div id="evidence" style="display:none;min-height:100vh;padding-top:var(--nav-h)">
+  <div class="page-inner">
+    <div class="page-header flex justify-between items-center" style="flex-wrap:wrap;gap:1rem">
+      <div><h1>Evidence Vault</h1><p class="text-muted">Proof of your growth. Every certificate, project, and win.</p></div>
+      <button class="btn btn-primary" onclick="openEvidenceModal()">+ Add Evidence</button>
+    </div>
+    <div class="drop-zone" id="drop-zone" ondragover="event.preventDefault();this.classList.add(&#39;drag&#39;)" ondragleave="this.classList.remove(&#39;drag&#39;)" ondrop="handleDrop(event)">
+      <div class="dz-icon">📎</div>
+      <div class="dz-text">Drag &amp; drop files here, or <span style="color:var(--g2);font-weight:600;cursor:pointer" onclick="openEvidenceModal()">click to add</span></div>
+      <div class="dz-sub">PDF, PNG, JPG, ZIP, or any link — max 20MB</div>
+    </div>
+    <div style="display:flex;gap:7px;margin-bottom:1.25rem;flex-wrap:wrap" id="ev-tabs">
+      <button class="ct active" onclick="filterEv(&#39;all&#39;,this)">All</button>
+      <button class="ct" onclick="filterEv(&#39;cert&#39;,this)">🏅 Certificates</button>
+      <button class="ct" onclick="filterEv(&#39;project&#39;,this)">🎨 Projects</button>
+      <button class="ct" onclick="filterEv(&#39;github&#39;,this)">💻 GitHub</button>
+      <button class="ct" onclick="filterEv(&#39;pdf&#39;,this)">📄 PDFs</button>
+    </div>
+    <div class="ev-grid" id="ev-grid"></div>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<div id="timeline" style="display:none;min-height:100vh;padding-top:var(--nav-h)">
+  <div class="page-inner">
+    <div class="page-header"><h1>Growth Timeline</h1><p class="text-muted">Every step of your journey, recorded forever.</p></div>
+    <div class="tl-wrap"><div class="tl-list" id="tl-list"></div></div>
+  </div>
+</div>
+
+<!-- REFLECT -->
+<div id="reflect" style="display:none;min-height:100vh;padding-top:var(--nav-h)">
+  <div class="page-inner">
+    <div class="page-header"><h1>Weekly Reflection</h1><p class="text-muted">Growth starts with honest self-awareness.</p></div>
+    <div class="reflect-wrap">
+      <div class="card mb-2">
+        <div class="section-label">How are you feeling this week?</div>
+        <div class="mood-row">
+          <button class="mood-btn" id="mood-great" onclick="setMood(&#39;great&#39;)"><span class="em">😄</span>Great</button>
+          <button class="mood-btn" id="mood-good" onclick="setMood(&#39;good&#39;)"><span class="em">🙂</span>Good</button>
+          <button class="mood-btn" id="mood-okay" onclick="setMood(&#39;okay&#39;)"><span class="em">😐</span>Okay</button>
+          <button class="mood-btn" id="mood-tough" onclick="setMood(&#39;tough&#39;)"><span class="em">😔</span>Tough</button>
+        </div>
+      </div>
+      <div class="card mb-2">
+        <div class="section-label">Confidence this week (1–10)</div>
+        <input type="range" class="conf-slider" id="conf-slider" min="1" max="10" value="7" oninput="document.getElementById(&#39;conf-val&#39;).textContent=this.value">
+        <div class="conf-labels"><span>Low</span><span id="conf-val" style="font-weight:700;color:var(--g2)">7</span><span>High</span></div>
+      </div>
+      <div class="card mb-2"><div class="section-label">What did you achieve this week?</div><textarea class="form-control" id="r-wins" placeholder="I learned how to… I finished… I improved at…"></textarea></div>
+      <div class="card mb-2"><div class="section-label">What are you still struggling with?</div><textarea class="form-control" id="r-struggles" placeholder="I found it hard to… I need more practice with…"></textarea></div>
+      <div class="card mb-2"><div class="section-label">What's your focus for next week?</div><textarea class="form-control" id="r-focus" placeholder="Next week I will… My priority is…"></textarea></div>
+      <button class="btn btn-primary btn-lg" style="width:100%" onclick="saveReflection()">Save Reflection ✓</button>
+      <div id="past-refs" class="mt-3"></div>
+    </div>
+  </div>
+</div>
+
+<!-- AI COACH -->
+<div id="ai" style="display:none;min-height:100vh;padding-top:var(--nav-h)">
+  <div class="page-inner" style="max-width:780px">
+    <div class="coach-hero">
+      <div class="coach-tag">✦ AI Coach — Powered by Claude</div>
+      <h2>Your personal growth advisor</h2>
+      <p>Ask anything about your learning journey. Get personalized guidance that knows your actual skills, hours, and patterns.</p>
+    </div>
+    <div class="card mb-2">
+      <div class="section-label">Quick prompts</div>
+      <div class="quick-chips">
+        <button class="chip" onclick="aiQuick(&#39;What skill should I focus on this week and why?&#39;)">What to focus on?</button>
+        <button class="chip" onclick="aiQuick(&#39;Analyze my practice patterns and give me honest feedback.&#39;)">Analyze my patterns</button>
+        <button class="chip" onclick="aiQuick(&#39;I have 1 hour today. Give me a specific step-by-step practice plan.&#39;)">1-hour plan</button>
+        <button class="chip" onclick="aiQuick(&#39;How can I level up my Python faster? Give me a roadmap.&#39;)">Level up Python</button>
+        <button class="chip" onclick="aiQuick(&#39;I am feeling unmotivated. Help me get back on track with something actionable.&#39;)">Motivation boost</button>
+        <button class="chip" onclick="aiQuick(&#39;Design a 30-day challenge tailored to my current skills and goals.&#39;)">30-day challenge</button>
+        <button class="chip" onclick="aiQuick(&#39;What are the best resources for my weakest skill right now?&#39;)">Resource picks</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="panel-title">Coach <span class="sub" id="ai-status">Online · Ask anything</span></div>
+      <div class="chat-win" id="chat-win"></div>
+      <div class="chat-input-row">
+        <input class="chat-inp" id="chat-inp" placeholder="Ask your coach anything…" onkeydown="if(event.key===&#39;Enter&#39;)aiSend()">
+        <button class="btn btn-primary" id="ai-btn" onclick="aiSend()">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BADGES -->
+<div id="badges" style="display:none;min-height:100vh;padding-top:var(--nav-h)">
+  <div class="page-inner">
+    <div class="page-header"><h1>Achievements</h1><p class="text-muted">Milestones earned on your learning journey.</p></div>
+    <div class="badges-grid" id="badges-grid"></div>
+  </div>
+</div>
+
+<!-- PROFILE -->
+<div id="profile" style="display:none;min-height:100vh;padding-top:var(--nav-h)">
+  <div class="page-inner" style="max-width:700px">
+    <div class="page-header"><h1>Profile</h1></div>
+    <div class="profile-hero">
+      <div class="profile-av" id="p-av">U</div>
+      <div>
+        <h2 style="font-family:var(--ffd);font-size:1.6rem;margin-bottom:.2rem" id="p-name">Learner</h2>
+        <p class="text-muted text-sm" id="p-email">learner@skillflow.app</p>
+        <div style="margin-top:.5rem;display:flex;gap:8px;flex-wrap:wrap">
+          <span class="badge badge-green">🔥 7-day streak</span>
+          <span class="badge badge-blue" id="p-b-skills">4 skills</span>
+          <span class="badge badge-amber" id="p-b-hours">119h</span>
+        </div>
+      </div>
+    </div>
+    <div class="card mb-2">
+      <div class="panel-title">Edit Profile</div>
+      <div class="form-group"><label class="form-label">Display Name</label><input class="form-control" id="pe-name" placeholder="Your name"></div>
+      <div class="form-group"><label class="form-label">Email</label><input class="form-control" type="email" id="pe-email" placeholder="your@email.com"></div>
+      <div class="form-group"><label class="form-label">Learning Goal</label><input class="form-control" id="pe-goal" placeholder="e.g. Become a full-stack developer by 2026"></div>
+      <button class="btn btn-primary" onclick="saveProfile()">Save Changes</button>
+    </div>
+    <div class="card"><div class="panel-title">Account</div><button class="btn btn-ghost btn-sm" onclick="logout()">Sign Out</button></div>
+  </div>
+</div>
+
+<!-- SKILL MODAL -->
+<div class="modal-bg" id="skill-modal">
+  <div class="modal">
+    <h2 class="modal-title" id="sm-title">Add Skill</h2>
+    <div class="form-group"><label class="form-label">Skill Name</label><input class="form-control" id="sm-name" placeholder="e.g. Python, Guitar, Public Speaking"></div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Category</label>
+        <select class="form-control" id="sm-cat">
+          <option>Programming</option><option>Design</option><option>Communication</option><option>Music</option><option>Writing</option><option>Languages</option><option>Math</option><option>Finance</option><option>Sports</option><option>Other</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="form-label">Current Level (1–10)</label><input class="form-control" type="number" id="sm-level" min="1" max="10" value="1"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Target Level</label><input class="form-control" type="number" id="sm-target" min="1" max="10" value="10"></div>
+      <div class="form-group"><label class="form-label">Hours Practiced</label><input class="form-control" type="number" id="sm-hours" min="0" value="0"></div>
+    </div>
+    <div class="form-group"><label class="form-label">Notes</label><input class="form-control" id="sm-notes" placeholder="Resources, goals, context…"></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeSkillModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveSkill()">Save Skill</button>
+    </div>
+  </div>
+</div>
+
+<!-- EVIDENCE MODAL -->
+<div class="modal-bg" id="ev-modal">
+  <div class="modal">
+    <h2 class="modal-title">Add Evidence</h2>
+    <div class="form-group"><label class="form-label">Title</label><input class="form-control" id="ev-title" placeholder="e.g. Python for Data Science — Coursera"></div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Type</label>
+        <select class="form-control" id="ev-type">
+          <option value="cert">🏅 Certificate</option><option value="project">🎨 Project</option><option value="github">💻 GitHub</option><option value="pdf">📄 PDF/Notes</option><option value="image">🖼️ Image</option><option value="other">📎 Other</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="form-label">Linked Skill</label><select class="form-control" id="ev-skill"></select></div>
+    </div>
+    <div class="form-group"><label class="form-label">URL / Link (optional)</label><input class="form-control" id="ev-url" placeholder="https://github.com/…"></div>
+    <div class="form-group"><label class="form-label">Description</label><textarea class="form-control" id="ev-desc" placeholder="What does this represent? What did you achieve?"></textarea></div>
+    <div class="form-group"><label class="form-label">Date</label><input class="form-control" type="month" id="ev-date"></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeEvidenceModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveEvidence()">Save Evidence</button>
+    </div>
+  </div>
+</div>
+<script>
+'use strict';
+/* ── STATE ── */
+let USER=null,EDITING_SKILL=null,EV_FILTER='all',ACT_CAT='All';
+let T_RUNNING=false,T_SEC=0,T_INTERVAL=null,MOOD='';
+let AN_CHARTS={};
+let PROFILE={name:'',email:'',goal:''};
+let CHAT_HIST=[];
+let ID=5,EV_ID=6;
+
+let SKILLS=[
+  {id:1,name:'Python',cat:'Programming',level:7,target:10,hours:42,notes:'ML projects & data science',updated:new Date(Date.now()-86400000)},
+  {id:2,name:'UI Design',cat:'Design',level:5,target:8,hours:28,notes:'Figma & Framer',updated:new Date(Date.now()-172800000)},
+  {id:3,name:'Public Speaking',cat:'Communication',level:4,target:9,hours:14,notes:'Toastmasters & YouTube',updated:new Date(Date.now()-259200000)},
+  {id:4,name:'React',cat:'Programming',level:6,target:10,hours:35,notes:'Component libraries',updated:new Date(Date.now()-345600000)},
+];
+let SESSIONS=[
+  {skill:'Python',dur:90,date:new Date(Date.now()-3600000)},
+  {skill:'UI Design',dur:45,date:new Date(Date.now()-7200000)},
+  {skill:'React',dur:120,date:new Date(Date.now()-86400000)},
+  {skill:'Python',dur:60,date:new Date(Date.now()-172800000)},
+];
+let TL=[
+  {type:'practice',title:'Practiced Python for 1.5 hours',desc:'Deep dive into NumPy arrays and data manipulation.',date:new Date(Date.now()-3600000),cat:'Programming'},
+  {type:'milestone',title:'Reached Level 7 in Python!',desc:'Consistent daily practice over 3 months paid off.',date:new Date(Date.now()-172800000),cat:'Programming'},
+  {type:'practice',title:'UI Design session — 45 minutes',desc:'Color theory and component systems in Figma.',date:new Date(Date.now()-259200000),cat:'Design'},
+  {type:'upload',title:'Added Python Certificate to vault',desc:'Coursera Python for Data Science complete.',date:new Date(Date.now()-432000000),cat:'Programming'},
+  {type:'note',title:'Started tracking React',desc:'Building first component library with Storybook.',date:new Date(Date.now()-604800000),cat:'Programming'},
+];
+let EVIDENCE=[
+  {id:1,title:'Python for Data Science — Coursera',type:'cert',skill:'Python',desc:'6-week specialization covering pandas, numpy, matplotlib.',date:'2025-03',emoji:'🏅'},
+  {id:2,title:'Portfolio Website v2',type:'project',skill:'UI Design',desc:'Redesigned in Figma, built with Framer.',date:'2025-02',emoji:'🎨'},
+  {id:3,title:'ML Pipeline — GitHub',type:'github',skill:'Python',desc:'End-to-end ML project with sklearn and pandas.',date:'2025-04',emoji:'💻'},
+  {id:4,title:'React Component Library',type:'project',skill:'React',desc:'50+ reusable components with Storybook docs.',date:'2025-01',emoji:'⚛️'},
+  {id:5,title:'Toastmasters CC Manual',type:'pdf',skill:'Public Speaking',desc:'All 10 speech projects completed.',date:'2024-12',emoji:'🎤'},
+];
+let REFLECTIONS=[];
+
+const CAT_COLORS={
+  Programming:{bg:'#dbeafe',color:'#1e40af'},Design:{bg:'#fce7f3',color:'#9d174d'},
+  Communication:{bg:'#dcfce7',color:'#166534'},Music:{bg:'#fef3c7',color:'#92400e'},
+  Writing:{bg:'#ede9fe',color:'#5b21b6'},Languages:{bg:'#ffedd5',color:'#c2410c'},
+  Math:{bg:'#f0f9ff',color:'#0c4a6e'},Finance:{bg:'#f0fdf4',color:'#14532d'},
+  Sports:{bg:'#fff1f2',color:'#9f1239'},Other:{bg:'#f1f5f9',color:'#475569'}
+};
+const EV_META={
+  cert:{emoji:'🏅',label:'Certificate',bg:'#fef3c7',color:'#92400e'},
+  project:{emoji:'🎨',label:'Project',bg:'#ede9fe',color:'#5b21b6'},
+  github:{emoji:'💻',label:'GitHub',bg:'#dbeafe',color:'#1e40af'},
+  pdf:{emoji:'📄',label:'PDF',bg:'#fce7f3',color:'#9d174d'},
+  image:{emoji:'🖼️',label:'Image',bg:'#dcfce7',color:'#166534'},
+  other:{emoji:'📎',label:'Other',bg:'#f1f5f9',color:'#475569'}
+};
+const INSIGHTS=[
+  'You\'re practicing consistently — Python hours are up this week. That compound consistency is the real secret to mastery.',
+  '7 days in a row. That\'s not luck — that\'s a system. Keep showing up and the growth will surprise you.',
+  'Communication is your lowest-hour skill but has the highest real-world ROI. Two sessions this week would make a big difference.',
+  'You\'ve built real momentum. Most learners give up by week 3 — you\'re still here and accelerating.',
+  'Your Python growth from Level 5 to Level 7 happened in 6 weeks. At this rate, Level 9 is just 8 weeks away.',
+  'Deep work sessions over 60 minutes produce 3× the skill gain of fragmented practice. Try one long session this week.',
+  'Your most practiced and strongest skill are the same — a sign of focused, intentional learning. Keep that up.',
+];
+const BADGES=[
+  {icon:'🌱',name:'First Step',desc:'Added your first skill',key:'first_step'},
+  {icon:'⚡',name:'First Hour',desc:'Logged your first practice hour',key:'first_hour'},
+  {icon:'🎯',name:'Goal Setter',desc:'Added 3+ skills with targets',key:'goal_setter'},
+  {icon:'🔥',name:'7-Day Streak',desc:'7 consecutive practice days',key:'streak7'},
+  {icon:'✍️',name:'Reflective',desc:'Wrote your first reflection',key:'reflective'},
+  {icon:'📂',name:'Evidence Builder',desc:'Added your first evidence item',key:'evidence'},
+  {icon:'💎',name:'30-Day Streak',desc:'30 consecutive practice days',key:'streak30'},
+  {icon:'🚀',name:'100 Hours',desc:'Logged 100 total practice hours',key:'h100'},
+  {icon:'🏆',name:'Level Master',desc:'Reached Level 8 in any skill',key:'lv8'},
+  {icon:'🌟',name:'All-Rounder',desc:'Skills in 5+ categories',key:'allround'},
+  {icon:'💪',name:'Grind Mode',desc:'6+ hours logged in a single day',key:'grind'},
+  {icon:'🧠',name:'Deep Thinker',desc:'Written 10+ reflections',key:'ref10'},
+  {icon:'🎓',name:'Graduate',desc:'Reached target level in a skill',key:'grad'},
+  {icon:'🔗',name:'Connected',desc:'Added 5+ evidence items',key:'ev5'},
+];
+
+/* ── UTILS ── */
+const $=id=>document.getElementById(id);
+function toast(msg,dur=2800){
+  const t=document.createElement('div');t.className='toast';t.textContent=msg;
+  $('toast-root').appendChild(t);
+  setTimeout(()=>{t.style.opacity='0';t.style.transition='opacity .4s';setTimeout(()=>t.remove(),400)},dur);
+}
+function confetti(){
+  const cols=['#22c55e','#16a34a','#bbf7d0','#fbbf24','#60a5fa','#a78bfa'];
+  for(let i=0;i<32;i++)setTimeout(()=>{
+    const el=document.createElement('div');el.className='cfpce';
+    el.style.cssText=`left:${Math.random()*100}vw;top:0;width:${6+Math.random()*10}px;height:${6+Math.random()*10}px;background:${cols[Math.floor(Math.random()*cols.length)]};transform:rotate(${Math.random()*360}deg);animation-delay:${Math.random()*0.5}s`;
+    document.body.appendChild(el);setTimeout(()=>el.remove(),2800);
+  },i*40);
+}
+function ago(date){
+  const m=Math.round((Date.now()-new Date(date))/60000);
+  if(m<2)return'Just now';if(m<60)return m+'m ago';
+  if(m<1440)return Math.round(m/60)+'h ago';
+  if(m<10080)return Math.round(m/1440)+'d ago';
+  return new Date(date).toLocaleDateString('en-IN',{month:'short',day:'numeric'});
+}
+function fmtDate(d){return new Date(d).toLocaleDateString('en-IN',{month:'short',day:'numeric',year:'numeric'});}
+function totalHours(){return Math.round(SKILLS.reduce((a,s)=>a+s.hours,0)*10)/10;}
+function addTL(type,title,desc,cat){TL.unshift({type,title,desc,cat,date:new Date()});}
+
+/* ── ROUTING ── */
+/* Pages excluding auth (auth has its own show/hide logic) */
+const PAGES=['landing','dashboard','skills','timer','analytics','evidence','timeline','reflect','ai','badges','profile'];
+
+function hideAll(){
+  PAGES.forEach(p=>{const el=$(p);if(el){el.style.display='none';}});
+  $('auth-page').style.display='none';
+  $('main-nav').style.display='none';
+}
+
+function showLanding(){
+  hideAll();
+  $('landing').style.display='block';
+}
+
+function showAuth(tab='login'){
+  hideAll();
+  const ap=$('auth-page');
+  ap.style.cssText='display:flex;min-height:100vh;align-items:center;justify-content:center;padding:2rem;background:var(--g5);';
+  switchAuthTab(tab);
+}
+
+function nav(page){
+  if(!USER){showAuth();return;}
+  hideAll();
+  $('main-nav').style.display='flex';
+  const el=$(page);
+  if(el){el.style.display='block';}
+  document.querySelectorAll('.nav-link').forEach(b=>b.classList.remove('active'));
+  const btn=$('nl-'+page);if(btn)btn.classList.add('active');
+  if(page==='dashboard')initDash();
+  else if(page==='skills')renderSkills();
+  else if(page==='timer'){fillSelects();renderSessions();}
+  else if(page==='analytics')initAnalytics();
+  else if(page==='evidence')renderEvidence();
+  else if(page==='timeline')renderTL();
+  else if(page==='badges')renderBadges();
+  else if(page==='profile')initProfile();
+  else if(page==='reflect')renderPastRefs();
+}
+
+/* ── AUTH ── */
+function switchAuthTab(tab){
+  $('form-login').style.display=tab==='login'?'block':'none';
+  $('form-signup').style.display=tab==='signup'?'block':'none';
+  $('tab-login').className='auth-tab'+(tab==='login'?' active':'');
+  $('tab-signup').className='auth-tab'+(tab==='signup'?' active':'');
+  $('auth-title').textContent=tab==='login'?'Welcome back':'Create account';
+  $('auth-sub').textContent=tab==='login'?'Sign in to continue your journey.':'Join thousands of learners growing every day.';
+}
+function doLogin(){
+  const email=$('l-email').value||'demo@skillflow.app';
+  const name=email.split('@')[0].replace(/[._]/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+  USER={name,email};enterApp();
+}
+function doSignup(){
+  const name=$('s-name').value.trim()||'Learner';
+  const email=$('s-email').value||'learner@skillflow.app';
+  USER={name,email};SKILLS=[];SESSIONS=[];TL=[];EVIDENCE=[];REFLECTIONS=[];
+  confetti();toast('🎉 Welcome to SkillFlow, '+name+'!');enterApp();
+}
+function enterApp(){
+  PROFILE.name=USER.name;PROFILE.email=USER.email;
+  $('nav-avatar').textContent=USER.name.charAt(0).toUpperCase();
+  nav('dashboard');
+  setTimeout(()=>{const cw=$('chat-win');if(cw&&!cw.children.length)aiAddMsg('ai','Hey! I\'m your SkillFlow AI Coach ✦\n\nI\'m connected to your real skill data. Ask me anything — from focus advice and study plans to motivation when you need it most. I\'m here to push you forward. 💪');},400);
+}
+function logout(){USER=null;CHAT_HIST=[];Object.values(AN_CHARTS).forEach(c=>{try{c.destroy()}catch(e){}});AN_CHARTS={};showLanding();toast('See you tomorrow! 👋');}
+
+/* ── DASHBOARD ── */
+function initDash(){
+  const h=new Date().getHours();
+  $('dash-greet').textContent=(h<12?'Good morning':h<17?'Good afternoon':'Good evening')+' '+USER.name+' ✦';
+  const tot=totalHours();
+  const wkSess=SESSIONS.filter(s=>Date.now()-new Date(s.date)<604800000);
+  const wkH=Math.round(wkSess.reduce((a,s)=>a+s.dur/60,0)*10)/10;
+  $('stats-strip').innerHTML=[
+    {icon:'📚',num:SKILLS.length,lbl:'Skills tracked',ch:'Active'},
+    {icon:'⏱',num:tot+'h',lbl:'Total practice',ch:'+'+wkH+'h this week'},
+    {icon:'🔥',num:'7',lbl:'Day streak',ch:'Personal best!'},
+    {icon:'⭐',num:(SKILLS.length?Math.round(tot/SKILLS.length):0)+'h',lbl:'Avg per skill',ch:'↑ Improving'},
+  ].map(s=>`<div class="stat-card"><div class="stat-icon">${s.icon}</div><div class="stat-num">${s.num}</div><div class="stat-label">${s.lbl}</div><div class="stat-change">↑ ${s.ch}</div></div>`).join('');
+
+  const top=[...SKILLS].sort((a,b)=>b.hours-a.hours).slice(0,5);
+  $('dash-bars').innerHTML=top.length?top.map(s=>{const p=Math.round(s.level/s.target*100);return`<div style="margin-bottom:1rem"><div style="display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:5px"><span style="font-weight:700">${s.name}</span><span style="color:var(--text3)">Lv ${s.level}/${s.target}</span></div><div class="prog-track"><div class="prog-fill" style="width:${p}%"></div><div class="prog-target-line" style="left:${Math.round(s.target/10*100)}%"></div></div></div>`;}).join(''):'<p style="color:var(--text3);font-size:.875rem">No skills yet. Add your first skill!</p>';
+
+  $('dash-activity').innerHTML=TL.slice(0,5).map(a=>`<div class="act-item"><div class="act-dot"></div><div><div class="act-text">${a.title}</div><div class="act-time">${ago(a.date)}</div></div></div>`).join('')||'<p style="color:var(--text3);font-size:.875rem">No activity yet. Start practicing!</p>';
+
+  const ins=INSIGHTS[Math.floor(Date.now()/3600000)%INSIGHTS.length];
+  setTimeout(()=>$('dash-insight').textContent=ins,300);
+
+  $('streak-row').innerHTML=Array.from({length:28},(_,i)=>`<div class="s-cell${i<7?' on':''}${i===0?' today':''}"></div>`).join('');
+  $('streak-label').textContent='🔥 7 days';
+
+  $('wk-grid').innerHTML=[
+    {n:wkH+'h',l:'Practice time'},{n:SKILLS.filter(s=>new Date(s.updated)>new Date(Date.now()-604800000)).length,l:'Skills updated'},
+    {n:wkSess.length,l:'Sessions done'},{n:'7/7',l:'Active days'},
+  ].map(w=>`<div class="wk-cell"><div class="wk-num">${w.n}</div><div class="wk-lbl">${w.l}</div></div>`).join('');
+  $('dash-sub').textContent='You\'re on a 7-day streak. Keep showing up — every day matters.';
+}
+
+/* ── SKILLS ── */
+function renderSkills(){
+  const cats=['All',...new Set(SKILLS.map(s=>s.cat))];
+  $('cat-pills').innerHTML=cats.map(c=>`<button class="pill${c===ACT_CAT?' active':''}" onclick="setCat('${c}')">${c}</button>`).join('');
+  const q=($('skill-search')?.value||'').toLowerCase();
+  const list=SKILLS.filter(s=>(ACT_CAT==='All'||s.cat===ACT_CAT)&&s.name.toLowerCase().includes(q));
+  if(!list.length){$('skills-grid').innerHTML=`<div class="empty-state"><div class="empty-icon">🌱</div><h3>No skills found</h3><p>Add your first skill to start tracking growth.</p></div>`;return;}
+  $('skills-grid').innerHTML=list.map(s=>{
+    const cc=CAT_COLORS[s.cat]||CAT_COLORS.Other;
+    const p=Math.round(s.level/s.target*100);
+    return`<div class="skill-card card-hover"><div class="skill-top"><span class="badge" style="background:${cc.bg};color:${cc.color}">${s.cat}</span><div class="skill-acts"><button class="btn-icon" onclick="openSkillModal(${s.id})" title="Edit">✏️</button><button class="btn-icon" onclick="delSkill(${s.id})" title="Delete">🗑️</button></div></div><div class="skill-name">${s.name}</div><div class="skill-meta">${s.hours}h practiced${s.notes?' · '+s.notes.slice(0,35)+'…':''}</div><div class="level-row"><span>Level ${s.level}</span><span>Target ${s.target}</span></div><div class="prog-track"><div class="prog-fill" style="width:${p}%"></div><div class="prog-target-line" style="left:${Math.round(s.target/10*100)}%"></div></div><div class="skill-foot"><span>Updated ${ago(s.updated)}</span><span class="skill-pct">${p}%</span></div></div>`;
+  }).join('');
+}
+function setCat(c){ACT_CAT=c;renderSkills();}
+function openSkillModal(id=null){
+  EDITING_SKILL=id;const s=id?SKILLS.find(x=>x.id===id):null;
+  $('sm-title').textContent=id?'Edit Skill':'Add Skill';
+  $('sm-name').value=s?.name||'';$('sm-cat').value=s?.cat||'Programming';
+  $('sm-level').value=s?.level||1;$('sm-target').value=s?.target||10;
+  $('sm-hours').value=s?.hours||0;$('sm-notes').value=s?.notes||'';
+  $('skill-modal').classList.add('open');
+}
+function closeSkillModal(){$('skill-modal').classList.remove('open');}
+function saveSkill(){
+  const name=$('sm-name').value.trim();if(!name){toast('Enter a skill name');return;}
+  const skill={id:EDITING_SKILL||ID++,name,cat:$('sm-cat').value,level:Math.min(10,Math.max(1,parseInt($('sm-level').value)||1)),target:Math.min(10,Math.max(1,parseInt($('sm-target').value)||10)),hours:Math.max(0,parseFloat($('sm-hours').value)||0),notes:$('sm-notes').value,updated:new Date()};
+  if(EDITING_SKILL){SKILLS=SKILLS.map(s=>s.id===EDITING_SKILL?skill:s);addTL('note','Updated '+name,skill.notes||'Skill details updated.',skill.cat);toast('✅ Skill updated!');}
+  else{SKILLS.push(skill);addTL('note','Started tracking '+name,'New skill added to journey.',skill.cat);toast('🌱 Skill added!');confetti();}
+  closeSkillModal();renderSkills();fillSelects();
+}
+function delSkill(id){
+  if(!confirm('Remove this skill?'))return;
+  const s=SKILLS.find(x=>x.id===id);SKILLS=SKILLS.filter(x=>x.id!==id);
+  addTL('note','Removed skill: '+(s?.name||''),'','Other');renderSkills();toast('Skill removed.');
+}
+
+/* ── TIMER ── */
+function fillSelects(){
+  const opts='<option value="">— Select a skill —</option>'+SKILLS.map(s=>`<option value="${s.name}">${s.name}</option>`).join('');
+  ['timer-sel','manual-sel','ev-skill'].forEach(id=>{const el=$(id);if(el)el.innerHTML=opts;});
+}
+function timerToggle(){
+  if(T_RUNNING){
+    clearInterval(T_INTERVAL);T_RUNNING=false;$('t-play').textContent='▶';
+    const skill=$('timer-sel').value;
+    if(T_SEC>0&&skill){
+      const mins=Math.round(T_SEC/60);
+      SESSIONS.unshift({skill,dur:mins,date:new Date()});
+      const s=SKILLS.find(x=>x.name===skill);
+      if(s){s.hours=Math.round((s.hours+mins/60)*10)/10;s.updated=new Date();}
+      addTL('practice','Practiced '+skill+' for '+mins+' min','Timer session completed.',s?.cat||'Other');
+      renderSessions();toast('✅ '+mins+' min of '+skill+' logged!');
+    }
+  }else{T_RUNNING=true;$('t-play').textContent='⏸';T_INTERVAL=setInterval(()=>{T_SEC++;updTimer();},1000);}
+}
+function timerReset(){clearInterval(T_INTERVAL);T_RUNNING=false;T_SEC=0;$('t-play').textContent='▶';updTimer();}
+function updTimer(){
+  const m=String(Math.floor(T_SEC/60)).padStart(2,'0'),s=String(T_SEC%60).padStart(2,'0');
+  $('t-display').textContent=`${m}:${s}`;
+  $('t-arc').style.strokeDashoffset=326.73*(1-Math.min(T_SEC/3600,1));
+}
+function manualLog(){
+  const skill=$('manual-sel').value,mins=parseInt($('manual-mins').value);
+  if(!skill||!mins||mins<1){toast('Select a skill and enter minutes');return;}
+  SESSIONS.unshift({skill,dur:mins,date:new Date()});
+  const s=SKILLS.find(x=>x.name===skill);
+  if(s){s.hours=Math.round((s.hours+mins/60)*10)/10;s.updated=new Date();}
+  addTL('practice','Logged '+mins+' min of '+skill,'Manual session.',s?.cat||'Other');
+  $('manual-mins').value='';renderSessions();toast('⏱ '+mins+' min logged for '+skill+'!');
+}
+function renderSessions(){
+  const el=$('sessions-list');if(!el)return;
+  el.innerHTML=SESSIONS.length?SESSIONS.slice(0,8).map(s=>`<div class="sess-row"><div><div class="sess-skill">${s.skill}</div><div class="sess-meta">${ago(s.date)}</div></div><div class="sess-dur">${s.dur} min</div></div>`).join(''):'<p style="color:var(--text3);font-size:.875rem;padding:1rem 0">No sessions yet. Start the timer or log manually.</p>';
+}
+
+/* ── ANALYTICS ── */
+function initAnalytics(){
+  const tot=totalHours();
+  $('an-stats').innerHTML=[
+    {icon:'⏱',num:tot+'h',lbl:'Total practice',ch:'All time'},
+    {icon:'📚',num:SKILLS.length,lbl:'Skills tracked',ch:'Active'},
+    {icon:'📈',num:'22%',lbl:'Growth this month',ch:'vs last month'},
+    {icon:'🔥',num:'7',lbl:'Day streak',ch:'Current'},
+  ].map(s=>`<div class="stat-card"><div class="stat-icon">${s.icon}</div><div class="stat-num">${s.num}</div><div class="stat-label">${s.lbl}</div><div class="stat-change">↑ ${s.ch}</div></div>`).join('');
+  setTimeout(buildCharts,60);renderAnProg();buildHeatmap();
+}
+function buildCharts(){
+  Object.values(AN_CHARTS).forEach(c=>{try{c.destroy()}catch(e){}});AN_CHARTS={};
+  const W=['W1','W2','W3','W4','W5','W6','W7','W8'],D=[4,6,5,8,7,9,8,11];
+  AN_CHARTS.weekly=new Chart($('c-weekly'),{type:'bar',data:{labels:W,datasets:[{label:'Hours',data:D,backgroundColor:'#22c55e',borderRadius:7,borderSkipped:false},{label:'Avg',data:W.map(()=>7.25),type:'line',borderColor:'#16a34a',borderDash:[5,4],borderWidth:2,pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:11}}},x:{grid:{display:false},ticks:{font:{size:11}}}}}});
+  AN_CHARTS.skill=new Chart($('c-skill'),{type:'line',data:{labels:W,datasets:[{label:'Python',data:[1.5,2,1.8,2.5,2,3,2.5,4],borderColor:'#22c55e',backgroundColor:'rgba(34,197,94,.1)',fill:true,tension:0.4,pointRadius:3},{label:'UI Design',data:[0.5,1,1,1.5,1.5,2,2,3],borderColor:'#60a5fa',backgroundColor:'rgba(96,165,250,.07)',fill:true,tension:0.4,pointRadius:3,borderDash:[4,3]},{label:'React',data:[1,1.5,1.5,2,2,2.5,2,2.5],borderColor:'#f59e0b',backgroundColor:'rgba(245,158,11,.06)',fill:true,tension:0.4,pointRadius:3,borderDash:[6,3]},{label:'Speaking',data:[.5,.5,.7,.5,.5,.5,.5,.5],borderColor:'#a78bfa',backgroundColor:'rgba(167,139,250,.05)',fill:true,tension:0.4,pointRadius:3,borderDash:[2,3]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:11}}},x:{grid:{display:false},ticks:{font:{size:11}}}}}});
+  const sn=SKILLS.map(s=>s.name),sc=SKILLS.map(s=>s.level),st=SKILLS.map(s=>s.target);
+  AN_CHARTS.radar=new Chart($('c-radar'),{type:'radar',data:{labels:sn.length?sn:['Python','UI Design','React','Speaking'],datasets:[{label:'Current',data:sc.length?sc:[7,5,6,4],borderColor:'#22c55e',backgroundColor:'rgba(34,197,94,.12)',pointBackgroundColor:'#22c55e',borderWidth:2.5},{label:'Target',data:st.length?st:[10,8,10,9],borderColor:'#16a34a',backgroundColor:'rgba(22,163,74,.04)',borderDash:[5,4],borderWidth:2,pointRadius:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{r:{min:0,max:10,ticks:{stepSize:2,font:{size:10}},grid:{color:'rgba(0,0,0,.07)'},pointLabels:{font:{size:12}}}}}});
+  const catMap={};SKILLS.forEach(s=>{catMap[s.cat]=(catMap[s.cat]||0)+s.hours;});
+  const cl=Object.keys(catMap),cv=Object.values(catMap);
+  const cols=['#22c55e','#60a5fa','#f59e0b','#a78bfa','#f87171','#34d399'];
+  AN_CHARTS.donut=new Chart($('c-donut'),{type:'doughnut',data:{labels:cl.length?cl:['Programming','Design','Communication'],datasets:[{data:cv.length?cv:[77,28,14],backgroundColor:cols.slice(0,Math.max(cl.length,3)),borderWidth:0,hoverOffset:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},cutout:'62%'}});
+  $('donut-legend').innerHTML=(cl.length?cl:['Programming','Design','Communication']).map((l,i)=>`<span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:${cols[i]};display:inline-block"></span>${l}</span>`).join('');
+}
+function switchChart(type,btn){
+  ['weekly','skill','radar'].forEach(t=>$('ch-'+t).style.display='none');
+  $('ch-'+type).style.display='block';
+  document.querySelectorAll('#analytics .ct').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+}
+function renderAnProg(){
+  $('an-prog').innerHTML=SKILLS.map(s=>{const p=Math.round(s.level/s.target*100);return`<div class="prog-item"><div class="prog-head"><span class="pn">${s.name}</span><span class="pm">Lv ${s.level}/${s.target} · ${s.hours}h</span></div><div class="prog-track"><div class="prog-fill" style="width:${p}%"></div><div class="prog-target-line" style="left:${Math.round(s.target/10*100)}%"></div></div><div style="font-size:.7rem;color:var(--text3);margin-top:3px">${p}% to target</div></div>`;}).join('')||'<p style="color:var(--text3);font-size:.875rem">No skills tracked yet.</p>';
+}
+function buildHeatmap(){
+  const g=$('hm-grid');if(!g||g.children.length)return;
+  for(let i=0;i<364;i++){const el=document.createElement('div');const r=Math.random();let c='hm-cell';if(i>300){if(r<.35)c+=' l1';else if(r<.55)c+=' l2';else if(r<.75)c+=' l3';else if(r<.9)c+=' l4';}else if(r>.6){if(r<.75)c+=' l1';else if(r<.85)c+=' l2';else if(r<.93)c+=' l3';else c+=' l4';}el.className=c;g.appendChild(el);}
+}
+
+/* ── EVIDENCE ── */
+function openEvidenceModal(){
+  fillSelects();const now=new Date();
+  $('ev-date').value=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
+  ['ev-title','ev-desc','ev-url'].forEach(id=>{$(id).value='';});
+  $('ev-modal').classList.add('open');
+}
+function closeEvidenceModal(){$('ev-modal').classList.remove('open');}
+function handleDrop(e){e.preventDefault();$('drop-zone').classList.remove('drag');openEvidenceModal();}
+function saveEvidence(){
+  const title=$('ev-title').value.trim();if(!title){toast('Add a title');return;}
+  const type=$('ev-type').value,em=EV_META[type]?.emoji||'📎';
+  EVIDENCE.unshift({id:EV_ID++,title,type,skill:$('ev-skill').value||'General',url:$('ev-url').value,desc:$('ev-desc').value,date:$('ev-date').value,emoji:em});
+  addTL('upload','Added evidence: '+title,'Proof of growth saved to vault.',SKILLS.find(s=>s.name===$('ev-skill').value)?.cat||'Other');
+  closeEvidenceModal();renderEvidence();toast('📂 Evidence saved!');confetti();
+}
+function filterEv(f,btn){EV_FILTER=f;document.querySelectorAll('#ev-tabs .ct').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderEvidence();}
+function renderEvidence(){
+  const list=EV_FILTER==='all'?EVIDENCE:EVIDENCE.filter(e=>e.type===EV_FILTER);
+  if(!list.length){$('ev-grid').innerHTML=`<div class="empty-state" style="grid-column:1/-1"><div class="empty-icon">📂</div><h3>No evidence yet</h3><p>Add your first certificate, project, or proof of growth.</p></div>`;return;}
+  $('ev-grid').innerHTML=list.map(e=>{const m=EV_META[e.type]||EV_META.other;const ds=e.date?new Date(e.date+'-01').toLocaleDateString('en-IN',{month:'short',year:'numeric'}):'';return`<div class="ev-card"><div class="ev-thumb">${e.emoji}</div><div class="ev-body"><span class="badge" style="background:${m.bg};color:${m.color};margin-bottom:6px">${m.label}</span><div class="ev-name">${e.title}</div><div class="ev-skill">🔗 ${e.skill}</div>${e.desc?`<div style="font-size:.73rem;color:var(--text2);margin-top:4px;line-height:1.4">${e.desc.slice(0,80)}${e.desc.length>80?'…':''}</div>`:''}<div class="ev-date">${ds}</div>${e.url?`<a href="${e.url}" target="_blank" style="font-size:.7rem;color:var(--g2);display:block;margin-top:4px">🔗 Open link</a>`:''}</div></div>`;}).join('');
+}
+
+/* ── TIMELINE ── */
+function renderTL(){
+  const TYPES={practice:{color:'#22c55e',bg:'#dcfce7',label:'Practice'},milestone:{color:'#f59e0b',bg:'#fef3c7',label:'Milestone'},upload:{color:'#6366f1',bg:'#ede9fe',label:'Evidence'},note:{color:'#8b5cf6',bg:'#f3e8ff',label:'Update'},reflect:{color:'#ec4899',bg:'#fce7f3',label:'Reflection'}};
+  $('tl-list').innerHTML=TL.map(t=>{const ts=TYPES[t.type]||TYPES.note;return`<div class="tl-item"><div class="tl-dot" style="background:${ts.color}"></div><div class="tl-card"><div class="tl-date">${fmtDate(t.date)} · ${new Date(t.date).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'})}</div><div class="tl-title">${t.title}</div>${t.desc?`<div class="tl-desc">${t.desc}</div>`:''}<span class="badge mt-1" style="background:${ts.bg};color:${ts.color}">${ts.label}</span></div></div>`;}).join('')||'<div class="empty-state"><div class="empty-icon">🗓</div><h3>Your journey starts here</h3><p>Practice a skill or add a reflection to see your timeline grow.</p></div>';
+}
+
+/* ── REFLECT ── */
+function setMood(m){MOOD=m;['great','good','okay','tough'].forEach(x=>$('mood-'+x).classList.toggle('active',x===m));}
+function saveReflection(){
+  const wins=$('r-wins').value.trim();if(!wins){toast('Add at least one achievement!');return;}
+  REFLECTIONS.unshift({mood:MOOD||'good',confidence:parseInt($('conf-slider').value),wins,struggles:$('r-struggles').value.trim(),focus:$('r-focus').value.trim(),date:new Date()});
+  addTL('reflect','Added weekly reflection','Self-awareness is the first step to growth.','Other');
+  ['r-wins','r-struggles','r-focus'].forEach(id=>{$(id).value='';});
+  MOOD='';['great','good','okay','tough'].forEach(m=>$('mood-'+m).classList.remove('active'));
+  renderPastRefs();toast('✍️ Reflection saved!');confetti();
+}
+function renderPastRefs(){
+  if(!REFLECTIONS.length)return;
+  const mE={great:'😄',good:'🙂',okay:'😐',tough:'😔'};
+  $('past-refs').innerHTML=`<div class="section-label">Past Reflections</div>`+REFLECTIONS.map(r=>`<div class="card mb-2"><div class="past-date">${fmtDate(r.date)} ${mE[r.mood]||''} · Confidence: ${r.confidence||'–'}/10</div><div class="past-text"><strong>Wins:</strong> ${r.wins}</div>${r.struggles?`<div class="past-text mt-1"><strong>Struggles:</strong> ${r.struggles}</div>`:''} ${r.focus?`<div class="past-text mt-1"><strong>Focus:</strong> ${r.focus}</div>`:''}</div>`).join('');
+}
+
+/* ── AI COACH ── */
+function buildCtx(){
+  const ss=SKILLS.map(s=>`${s.name} (Level ${s.level}/${s.target}, ${s.hours}h, ${s.cat})`).join('; ');
+  const top=SKILLS.length?[...SKILLS].sort((a,b)=>b.hours-a.hours)[0].name:'none';
+  const low=SKILLS.length?[...SKILLS].sort((a,b)=>a.hours-b.hours)[0].name:'none';
+  return`You are SkillFlow AI Coach — an encouraging, intelligent, and direct personal growth advisor.
+
+USER DATA:
+- Skills: ${ss||'None yet'}
+- Total hours: ${totalHours()}h
+- Streak: 7 days
+- Most practiced: ${top}
+- Least practiced: ${low}
+- Reflections written: ${REFLECTIONS.length}
+- Evidence items: ${EVIDENCE.length}
+
+PERSONALITY: Warm, honest, specific, action-oriented. Always reference their actual skill data — never be generic. Keep responses to 3-5 sentences unless a detailed plan is asked for. Use line breaks. Occasionally use ✦ as a stylistic accent. You believe in this person's potential.`;
+}
+function aiAddMsg(role,text,loading=false){
+  const win=$('chat-win');const id='m'+Date.now()+Math.random();
+  const d=document.createElement('div');d.className='chat-msg'+(role==='usr'?' usr':'');d.id=id;
+  const av=role==='ai'?'SF':USER?.name?.charAt(0)?.toUpperCase()||'U';
+  d.innerHTML=`<div class="msg-av ${role}">${av}</div><div class="msg-bub ${role}">${loading?'<div class="typing"><span></span><span></span><span></span></div>':text.replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')}</div>`;
+  win.appendChild(d);win.scrollTop=win.scrollHeight;return id;
+}
+function aiUpdMsg(id,text){const el=$(id);if(el)el.querySelector('.msg-bub').innerHTML=text.replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');$('chat-win').scrollTop=9999;}
+async function aiSend(){
+  const inp=$('chat-inp'),msg=inp.value.trim();if(!msg)return;
+  inp.value='';aiAddMsg('usr',msg);CHAT_HIST.push({role:'user',content:msg});
+  const btn=$('ai-btn');btn.textContent='…';btn.disabled=true;
+  $('ai-status').textContent='Thinking…';
+  const lid=aiAddMsg('ai','',true);
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:buildCtx(),messages:CHAT_HIST})});
+    const data=await res.json();
+    const reply=data.content?.filter(c=>c.type==='text').map(c=>c.text).join('')||'Sorry, I had trouble connecting. Please try again.';
+    CHAT_HIST.push({role:'assistant',content:reply});aiUpdMsg(lid,reply);
+  }catch(e){aiUpdMsg(lid,'⚠️ Connection issue. Check your network and try again.');}
+  btn.textContent='Send';btn.disabled=false;$('ai-status').textContent='Online · Ask anything';
+}
+function aiQuick(p){$('chat-inp').value=p;aiSend();}
+
+/* ── BADGES ── */
+function renderBadges(){
+  const tot=totalHours();
+  const earned=new Set();
+  if(SKILLS.length>0)earned.add('first_step');
+  if(tot>=1)earned.add('first_hour');
+  if(SKILLS.length>=3)earned.add('goal_setter');
+  if(true)earned.add('streak7');
+  if(REFLECTIONS.length>0)earned.add('reflective');
+  if(EVIDENCE.length>0)earned.add('evidence');
+  if(tot>=100)earned.add('h100');
+  if(SKILLS.some(s=>s.level>=8))earned.add('lv8');
+  if(new Set(SKILLS.map(s=>s.cat)).size>=5)earned.add('allround');
+  if(EVIDENCE.length>=5)earned.add('ev5');
+  if(REFLECTIONS.length>=10)earned.add('ref10');
+  if(SKILLS.some(s=>s.level>=s.target))earned.add('grad');
+  $('badges-grid').innerHTML=BADGES.map(b=>{const e=earned.has(b.key);return`<div class="badge-card${e?'':' locked'}"><div class="badge-em">${b.icon}</div><div class="badge-name">${b.name}</div><div class="badge-desc">${b.desc}</div>${e?'<div class="badge-earned">✓ Earned</div>':'<div style="font-size:.7rem;color:var(--text3);margin-top:8px">🔒 Locked</div>'}</div>`;}).join('');
+}
+
+/* ── PROFILE ── */
+function initProfile(){
+  $('p-av').textContent=USER.name.charAt(0).toUpperCase();
+  $('p-name').textContent=PROFILE.name||USER.name;
+  $('p-email').textContent=PROFILE.email||USER.email;
+  $('pe-name').value=PROFILE.name||USER.name;
+  $('pe-email').value=PROFILE.email||USER.email;
+  $('pe-goal').value=PROFILE.goal||'';
+  $('p-b-skills').textContent=SKILLS.length+' skills';
+  $('p-b-hours').textContent=totalHours()+'h total';
+}
+function saveProfile(){
+  PROFILE.name=$('pe-name').value.trim()||USER.name;
+  PROFILE.email=$('pe-email').value||USER.email;
+  PROFILE.goal=$('pe-goal').value;
+  USER.name=PROFILE.name;
+  $('nav-avatar').textContent=USER.name.charAt(0).toUpperCase();
+  initProfile();toast('✅ Profile updated!');
+}
+
+/* ── MODAL CLOSE ON BACKDROP ── */
+['skill-modal','ev-modal'].forEach(id=>{$(id)?.addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});});
+
+/* ── INIT ── */
+updTimer();
+</script>
+
+
+</body></html>
